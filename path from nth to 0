@@ -1,0 +1,43 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    
+    public static void main(String [] args){
+        Scanner scn = new Scanner(System.in);
+        int num = 3;
+        System.out.println(getPathFromSourceToDest(num));
+    }
+    
+    public static ArrayList<String> getPathFromSourceToDest(int n){
+        if(n ==0){
+            ArrayList<String> baseAns = new ArrayList<>();
+            baseAns.add("");
+            return baseAns;
+        }
+        if(n < 0){
+            ArrayList<String> baseAns = new ArrayList<>();
+            return baseAns;
+        }
+        ArrayList<String> path1 = getPathFromSourceToDest(n-1);
+        ArrayList<String> path2 = getPathFromSourceToDest(n-2);
+        ArrayList<String> path3 = getPathFromSourceToDest(n-3);
+
+        ArrayList<String> myPath = new ArrayList<>();
+
+        for (String ans: path1) {
+            myPath.add(1 + ans);
+        }
+
+        for (String ans: path2) {
+            myPath.add(2 + ans);
+        }
+
+        for (String ans: path3) {
+            myPath.add(3 + ans);
+        }
+        return myPath;
+    }
+  }
