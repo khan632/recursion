@@ -1,0 +1,31 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+        Scanner scn = new Scanner(System.in);
+        String str = "abc";
+        System.out.println(printSubsequence(str));
+    }
+
+    public static ArrayList<String> printSubsequence(String str){
+        if (str.length() == 0) {
+            ArrayList<String> baseList = new ArrayList<>();
+            baseList.add("");
+            return baseList;
+        }
+        char ch = str.charAt(0);
+        String ros = str.substring(1);
+        ArrayList<String> list = printSubsequence(ros);
+
+        ArrayList<String> myList = new ArrayList<>();
+
+        for (String ans: list) {
+            myList.add("-"+ ans);
+            myList.add(ch + ans);
+        }
+        return myList;
+    }
+  }
