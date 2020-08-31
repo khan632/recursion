@@ -1,0 +1,37 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        Scanner scn = new Scanner(System.in);
+        int [] arr = {2, 4, 3, 3, 6, 7, 2, 9, 3};
+        int data = 3;
+        System.out.println(findFirstOcc(arr, 0, data));
+    }
+  // un-efficient form of program
+    public static int findFirstOcc(int[] arr, int idx, int data){
+        if(idx == arr.length){
+            return -1;
+        }
+        int firstIdx = findFirstOcc(arr, idx + 1, data);
+
+        return data == arr[idx] ? idx : firstIdx;
+
+    }
+  }
+    
+    //efficient form of program
+    
+    public static int findFirstOcc(int[] arr, int idx, int data){
+        if(idx == arr.length){
+            return -1;
+        }
+        if(arr[idx] == data){
+            return idx;
+        }else {
+            int firstIdx = findFirstOcc(arr, idx + 1, data);
+            return firstIdx;
+        }
+    }
+ }
