@@ -1,0 +1,41 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String [] args){
+        Scanner scn = new Scanner(System.in);
+        int n = 3;
+        int m = 3;
+        System.out.println(getPathFromSourceToDestInMaze(0, 0, n-1 , m-1));
+    }
+
+    public static  ArrayList<String> getPathFromSourceToDestInMaze(int sr, int sc, int dr, int dc){
+        if(sr == dr && sc == dc){
+            ArrayList<String> baseAns = new ArrayList<>();
+            baseAns.add("");
+            return baseAns;
+        }
+        ArrayList<String> hpath = new ArrayList<>();
+        ArrayList<String> vpath = new ArrayList<>();
+
+        if(sc < dc){
+            hpath = getPathFromSourceToDestInMaze(sr, sc + 1, dr, dc);
+        }
+        if(sr < dr){
+            vpath = getPathFromSourceToDestInMaze(sr + 1, sc, dr, dc);
+        }
+
+        ArrayList<String> myList = new ArrayList<>();
+
+        for (String ans: hpath) {
+            myList.add("h" + ans);
+        }
+
+        for (String ans: vpath) {
+            myList.add("v" + ans);
+        }
+        return myList;
+    }
+ }
