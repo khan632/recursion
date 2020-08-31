@@ -1,0 +1,36 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String [] args){
+        Scanner scn = new Scanner(System.in);
+        String str = "32";
+        System.out.println(getKeypadValue(str));
+    }
+    static String codes[] = {".;", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz"};
+
+    public static ArrayList<String> getKeypadValue(String str){
+        if (str.length() == 0){
+            ArrayList<String> baseAns= new ArrayList<>();
+            baseAns.add("");
+            return baseAns;
+        }
+        char ch = str.charAt(0);
+        String ros = str.substring(1);
+
+        ArrayList<String> list = getKeypadValue(ros);
+        ArrayList<String> mylist = new ArrayList<>();
+
+        String codeForCh = codes[ch - '0'];
+
+        for (int i = 0; i < codeForCh.length(); i++){
+            char c = codeForCh.charAt(i);
+            for (String ans: list) {
+                mylist.add(c + ans);
+            }
+        }
+        return mylist;
+    }
+  }
