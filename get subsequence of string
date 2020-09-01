@@ -29,3 +29,31 @@ public class Main {
         return myList;
     }
   }
+  
+================================================================================================================================================================================
+                                                                       //MORE OPTIMIZE WAY\\
+ 
+ package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String [] arg){
+        Scanner scn = new Scanner(System.in);
+
+        String str = "abc";
+        getSubsequence(str, "");
+    }
+
+    public static void getSubsequence(String ques, String ans){
+            if(ques.length() == 0){
+                System.out.println(ans);
+                return;
+            }
+        char ch = ques.charAt(0);
+        String roq = ques.substring(1);
+
+        getSubsequence(roq, ans + "");
+        getSubsequence(roq, ans + ch);
+    }
+   }
