@@ -1,0 +1,47 @@
+package com.company;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String [] args){
+        Scanner scn = new Scanner(System.in);
+        int n = 3;
+        int m = 3;
+        System.out.println(PathFromSourceToDestWithVariableMove(1, 1, n , m));
+    }
+
+    public static ArrayList<String> PathFromSourceToDestWithVariableMove(int sc, int sr, int dc, int dr){
+        if(sc == dc && sr == dr){
+            ArrayList<String> baseAns = new ArrayList<>();
+            baseAns.add("");
+            return baseAns;
+        }
+        
+        ArrayList<String> myAns = new ArrayList<>();
+        for (int i = 1; i <= dc-sc; i++){
+            ArrayList<String> hpath = PathFromSourceToDestWithVariableMove(sc + i, sr, dc, dr);
+
+            for (String path: hpath) {
+                myAns.add("h"+ i+ path);
+            }
+        }
+
+        for (int i = 1; i <= dr-sr; i++) {
+            ArrayList<String> vpath = PathFromSourceToDestWithVariableMove(sc, sr + i, dc, dr);
+
+            for (String path : vpath) {
+                myAns.add("v" + i + path);
+            }
+        }
+
+            for (int i = 1; i <= dr-sr && i <= dc - sc; i++){
+                ArrayList<String> dpath = PathFromSourceToDestWithVariableMove(sc + i, sr + i, dc, dr);
+
+                for (String path: dpath) {
+                    myAns.add("d"+ i+ path);
+                }
+        }
+            return myAns;
+    }
+  }
