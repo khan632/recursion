@@ -1,0 +1,36 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String [] arg){
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        int m = scn.nextInt();
+        int [][]arr = new int [n][m];
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                arr[i][j] = scn.nextInt();
+            }
+        }
+        boolean [][] a = new boolean [n][m];
+        floodfill(arr,0,0,"",a);
+    }
+
+    public static void floodfill(int [][] arr, int n, int m, String ans, boolean[][] visited){
+        if(n == arr.length-1 && m == arr[0].length-1){
+            System.out.println(ans);
+            return;
+        }
+        if(n < 0 || m < 0 || n >= arr.length || m >= arr[0].length || arr[n][m] == 1 || visited[n][m] == true){
+            return;
+        }
+        visited[n][m] = true;
+        floodfill(arr, n - 1, m, ans + " top ", visited);
+        floodfill(arr, n, m - 1, ans + " left ", visited);
+        floodfill(arr, n + 1, m, ans + " down ", visited);
+        floodfill(arr, n, m + 1, ans + " right ", visited);
+        visited[n][m] = false;
+    }
+   }
